@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const computeShipping = (subtotal: number) => 0;
+const computeShipping = () => 0;
 
 const checkoutSchema = z.object({
   name: z.string().min(2, "Please enter a valid name"),
