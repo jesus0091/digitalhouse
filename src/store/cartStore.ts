@@ -39,7 +39,7 @@ export const useCart = create<CartState>()(
       clear: () => set({ items: [] }),
       subtotal: () => get().items.reduce((sum, i) => sum + i.price * i.qty, 0),
       count: () => get().items.reduce((sum, i) => sum + i.qty, 0),
-      getQtyById: (id) => get().items.find((i) => i.id === id)?.qty ?? 0, // 👈 NUEVO
+      getQtyById: (id) => get().items.find((i) => i.id === id)?.qty ?? 0,
     }),
     { name: "cart-store" }
   )

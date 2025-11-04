@@ -19,7 +19,7 @@ describe("QuantityInput", () => {
   it("decrements the value when clicking the - button", () => {
     const handleChange = jest.fn();
     render(<QuantityInput value={3} onChange={handleChange} />);
-    const minusButton = screen.getAllByRole("button")[0]; // primer botón (-)
+    const minusButton = screen.getAllByRole("button")[0];
     fireEvent.click(minusButton);
     expect(handleChange).toHaveBeenCalledWith(2);
   });
