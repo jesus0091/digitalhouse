@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/types";
@@ -9,6 +11,9 @@ import { useCart } from "@/store/cartStore";
 export default function ProductCard({ product }: { product: Product }) {
   const add = useCart((s) => s.add);
   const qtyInCart = useCart((s) => s.getQtyById(product.id));
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const handleAddToCart = () => {
     add({
@@ -34,15 +39,15 @@ export default function ProductCard({ product }: { product: Product }) {
             fill
             className="object-contain p-4"
           />
-          {qtyInCart > 0 && (
-            <span
+          {mounted && qtyInCart > 0 && (
+            <div
               className="absolute top-3 right-3 inline-flex items-center justify-center min-w-6 h-6 px-2 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold"
               aria-label="Cantidad de este producto en el carrito"
               title="Cantidad de este producto en el carrito"
             >
               <ShoppingCart className="w-4" />
               {qtyInCart}
-            </span>
+            </div>
           )}
         </div>
         <div className="p-4">
